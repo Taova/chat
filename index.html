@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Курсовой проект</title>
+    <link rel="stylesheet" href="./components/chat/chat.css">
+    <link rel="stylesheet" href="./components/form/form.css">
+
+</head>
+<body>
+    <div class="js-chat"></div>
+    <div class="js-form"></div>
+    <!-- Dependencies -->
+    <script src="./components/chat/chat.js"></script>
+    <script src="./components/form/form.js"></script>
+
+    <script>
+        let form = new Form({
+            el: document.querySelector('.js-form')
+        });
+        let chat = new Chat({
+            el: document.querySelector('.js-chat')
+        });
+        form.render();
+        chat.render();
+
+        form.onSubmit = (message) => {
+            chat.addMessages(message);
+            chat.render();
+            form.render();
+        };
+
+        window.chat = chat;
+    </script>
+</body>
+</html>

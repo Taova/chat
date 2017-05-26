@@ -1,0 +1,26 @@
+{
+  "name": "chat",
+  "version": "1.0.0",
+  "description": "Учебный проект. Чат",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "serve": "static-server .",
+    "lint": "jshint components/**/*.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Taova/chat.git"
+  },
+  "author": "Taova Marina",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Taova/chat/issues"
+  },
+  "homepage": "https://github.com/Taova/chat#readme",
+  "devDependencies": {
+    "jsdoc-to-markdown": "^3.0.0",
+    "jshint": "^2.9.4",
+    "static-server": "^2.0.4"
+  }
+}
