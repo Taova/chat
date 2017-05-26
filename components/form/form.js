@@ -40,10 +40,9 @@
         render() {
             this.el.innerHTML = `
             <form class="form">
-                <input type="text" name="username" placeholder="Name" required>
-                <textarea name="message" rows="4" placeholder="Message" required></textarea>
-                <br/>
-                <input type="submit">
+                <input class="form__username" type="text" name="username" placeholder="Name" required>
+                <textarea class="form__msg" name="message" rows="4" placeholder="Message" required></textarea>
+                <input class="form__submit" type="submit">
             </form>
             `;
         }

@@ -18,7 +18,7 @@
 
         render() {
             let messageHtml = this.data.messages.map(messageData => {
-                return `<div class="chat">
+                return `<div class="chat__item">
                             <div class="chat__message">
                                 <span class="chat__autor">${messageData.username}</span>
                                 ${messageData.message}
@@ -26,7 +26,9 @@
                         </div>`;
                 }).join('<br/>');
             this.el.innerHTML = `
-                ${messageHtml}
+                <div class="chat">
+                    ${messageHtml}
+                </div>
             `;
         }
 
