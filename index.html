@@ -3,38 +3,29 @@
 <head>
     <meta charset="UTF-8">
     <title>Курсовой проект</title>
-    <link rel="stylesheet" href="./css/style.css">
+    <link rel="stylesheet" href="./components/app/app.css">
     <link rel="stylesheet" href="./components/chat/chat.css">
     <link rel="stylesheet" href="./components/form/form.css">
 
 </head>
 <body>
-    <div class="wrap">
-        <div class="js-chat"></div>
-        <div class="js-form"></div>
-    </div>
+    <div class="app"></div>
 
     <!-- Dependencies -->
+    <script src="./components/chat/chat.tmpl.js"></script>
+    <script src="./components/form/form.tmpl.js"></script>
     <script src="./components/chat/chat.js"></script>
     <script src="./components/form/form.js"></script>
 
+    <script src="./components/app/app.js"></script>
+
+    <!-- Application start -->
     <script>
-        let form = new Form({
-            el: document.querySelector('.js-form')
+        'use strict';
+        new window.App({
+            el: document.querySelector('.app')
         });
-        let chat = new Chat({
-            el: document.querySelector('.js-chat')
-        });
-        form.render();
-        chat.render();
-
-        form.onSubmit = (message) => {
-            chat.addMessages(message);
-            chat.render();
-            form.render();
-        };
-
-        window.chat = chat;
     </script>
+
 </body>
 </html>

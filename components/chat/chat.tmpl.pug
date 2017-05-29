@@ -1,0 +1,9 @@
+.chat
+    if !messages.length
+        h3 Нет сообщений
+
+    each message in messages
+        .chat__item
+            .chat__message
+                span.chat__autor=message.username
+                span=message.message

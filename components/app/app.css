@@ -2,7 +2,7 @@ body{
     background: rgba(126, 133, 136, 0.35);
 }
 
-.wrap{
+.app{
     width: 80%;
     padding: 10px;
     border: 1px solid rgba(142, 134, 134, 0.38);

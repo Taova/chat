@@ -4,6 +4,9 @@
 (function () {
     'use strict';
 
+    //import
+    const tmpl= window.chatTmpl;
+
     /**
      * @typedef {Object} ChatMessage
      * @property {string} username
@@ -17,19 +20,7 @@
         }
 
         render() {
-            let messageHtml = this.data.messages.map(messageData => {
-                return `<div class="chat__item">
-                            <div class="chat__message">
-                                <span class="chat__autor">${messageData.username}</span>
-                                ${messageData.message}
-                            </div>
-                        </div>`;
-                }).join('<br/>');
-            this.el.innerHTML = `
-                <div class="chat">
-                    ${messageHtml}
-                </div>
-            `;
+            this.el.innerHTML = tmpl(this.data);
         }
 
         /**

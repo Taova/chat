@@ -4,11 +4,18 @@
 (function () {
     'use strict';
 
+    //import
+    const tmpl = window.formTmpl;
+
     class Form {
         constructor({el}) {
             this.el = el;
             this._initEvents();
         }
+
+        /**
+         * init the Form events.
+         */
 
         _initEvents() {
             this.el.addEventListener('submit', this._onSubmit.bind(this));
@@ -38,13 +45,12 @@
         }
 
         render() {
-            this.el.innerHTML = `
-            <form class="form">
-                <input class="form__username" type="text" name="username" placeholder="Name" required>
-                <textarea class="form__msg" name="message" rows="4" placeholder="Message" required></textarea>
-                <input class="form__submit" type="submit">
-            </form>
-            `;
+            this.el.innerHTML = tmpl();
+            this.formEl = this.el.querySelector('form');
+        }
+
+        reset() {
+            this.formEl.reset();
         }
     }
 
