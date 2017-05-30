@@ -38,8 +38,21 @@
 
         _initMediate() {
             this.form.onSubmit = (message) => {
-                this.chat.addMessages(message);
-                this.chat.render();
+                debugger;
+                let senData = {
+                    message: message.message,
+                    username: message.username
+                };
+                makeRequest( (message) => {
+                    this.chat.render();
+
+                    makeRequest( (newMessage) => {
+                        let msg = Object.values(newMessage);
+                        this.chat.setMessages(msg);
+                        this.chat.render();
+                    });
+
+                }, 'POST', senData);
                 this.form.reset();
             };
         }

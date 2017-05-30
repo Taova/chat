@@ -30,6 +30,13 @@
         addMessages(message) {
             this.data.messages.push(message);
         }
+
+        setMessages(messages) {
+            this.data.messages = messages.map( (item) => ({
+                message: item.message,
+                username: item.username
+            }));
+        }
     }
 
     //export
