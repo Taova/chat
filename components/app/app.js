@@ -7,6 +7,10 @@
     //import
     const Chat = window.Chat;
     const Form = window.Form;
+    const ChatService = window.ChatService;
+    const chatService = new ChatService({
+        baseUrl : 'https://chat-1c82d.firebaseio.com/messages.json'
+    });
 
     class App {
         constructor(options) {
@@ -14,9 +18,6 @@
 
             this._createComponents();
             this._initMediate();
-
-            this.el.appendChild(this.chat.el);
-            this.el.appendChild(this.form.el);
 
             this.render();
         }
@@ -28,32 +29,68 @@
 
         _createComponents() {
             this.form = new Form({
-                el: document.createElement('div')
+                el: document.querySelector('.js-form')
             });
 
             this.chat = new Chat({
-                el: document.createElement('div')
+                el: document.querySelector('.js-chat'),
+                chatService
             });
+
         }
 
-        _initMediate() {
+       _initMediate() {
+
+           document.addEventListener('visibilitychange', () => {
+              if (document.visibilityState === 'hidden') {
+                  this.chat.stopPolling();
+              } else {
+                  this.chat.stopPolling();
+                  this.chat.startPolling();
+              }
+           });
+
+           // document.addEventListener("DOMContentLoaded", this.chat.startPolling);
+
+
+            // this.chatService.getMessage( (newMessage) => {
+            //     let msg =  Object.values(newMessage);
+            //     this.chat.setMessages(msg);
+            //     this.chat.render();
+            //     this.form.reset();
+            // });
+
+
+
             this.form.onSubmit = (message) => {
-                debugger;
-                let senData = {
+                let data = {
                     message: message.message,
                     username: message.username
                 };
-                makeRequest( (message) => {
-                    this.chat.render();
 
-                    makeRequest( (newMessage) => {
-                        let msg = Object.values(newMessage);
-                        this.chat.setMessages(msg);
-                        this.chat.render();
-                    });
+                chatService.sendMessage(data, () => {
+                    console.log('send new Message');
+                });
 
-                }, 'POST', senData);
-                this.form.reset();
+                //получить сообщения ?
+               this.chat.addMessages();
+               this.chat.render();
+               this.form.reset();
+
+           //     this.chatService.sendMessage(senData, () => {
+           //          this.chat.render();
+           //          this.form.reset();
+           //          return function (msg) {
+           //              console.log(msg);
+           //          }
+           //      });
+           //     this.chatService.getMessage( (newMessage) => {
+           //         let msg =  Object.values(newMessage);
+           //     this.chat.setMessages(msg);
+           //     this.chat.render();
+           //     this.form.reset();
+           // });
+
             };
         }
     }

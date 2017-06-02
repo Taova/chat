@@ -1,13 +1,78 @@
+html, body{
+    height: 100%;
+    font: 400 1rem/1.2 'PT Serif', serif;
+}
+
 body{
-    background: rgba(126, 133, 136, 0.35);
+    background: -webkit-linear-gradient(315deg,#044f48,#2a7561);
+    background: linear-gradient(135deg,#044f48,#2a7561);
+    overflow: hidden;
+}
+.bg{
+    width: 100%;
+    height: 100%;
+    top: 0;
+    left: 0;
+    z-index: 1;
+    background: url("../img/bg.jpg") no-repeat 0 0;
+    background-size: cover;
+     -webkit-filter:blur(50px);
+    filter: blur(10px);
+     -webkit-transform:scale(1.2);
+    transform: scale(1.2);
 }
 
 .app{
-    width: 80%;
-    padding: 10px;
-    border: 1px solid rgba(142, 134, 134, 0.38);
-    border-radius: 5px;
-    max-width: 900px;
-    margin: auto;
-    background: white;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    -webkit-transform: translate(-50%,-50%);
+    transform: translate(-50%,-50%);
+    width: 600px;
+    height: 80vh;
+    max-height: 800px;
+    z-index: 2;
+    overflow: hidden;
+    box-shadow: -11px -2px 36px 0px rgba(251, 250, 250, 0.15);
+    background: rgba(17, 6, 24, 0.61);
+    border-radius: 20px;
+}
+/* scrollbar */
+::-webkit-scrollbar {
+    width: 10px
+}
+
+::-webkit-scrollbar-track {
+    border-radius: 10px;
+    background-color: rgba(25,147,147,.1)
+}
+
+::-webkit-scrollbar-thumb {
+    border-radius: 10px;
+    background-color: rgba(25,147,147,.2)
+}
+
+/** clearfix **/
+.clearfix:after {
+    content: "";
+    display: table;
+    clear: both;
+}
+
+/** ::selection **/
+::selection {
+    background: #312682; /* Safari */
+}
+::-moz-selection {
+    background: #312682; /* Firefox */
+}
+
+/** bold, cursive fonts**/
+.bfont{
+    font-weight: 700 !important;
+    font-family: 'PT Serif', serif !important;
+}
+.cfont {
+    font-style: italic !important;
+    font-family: 'PT Serif', serif !important;
 }

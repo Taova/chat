@@ -3,17 +3,30 @@
 <head>
     <meta charset="UTF-8">
     <title>Курсовой проект</title>
+    <link href="https://fonts.googleapis.com/css?family=PT+Serif:400,400i,700&amp;subset=cyrillic" rel="stylesheet">
     <link rel="stylesheet" href="./components/app/app.css">
     <link rel="stylesheet" href="./components/chat/chat.css">
     <link rel="stylesheet" href="./components/form/form.css">
+    <!-- Favicon -->
+    <link rel="shortcut icon" href="./favicon.ico" type="image/x-icon">
+    <link rel="icon" href="./favicon.ico" type="image/x-icon">
 
 </head>
 <body>
-    <div class="app"></div>
-
+    <div class="app">
+        <div class="chat">
+            <h1 class="chat__header">Добро пожаловать</h1>
+            <div class="chat__content js-chat"></div>
+        </div>
+        <div class="form js-form"></div>
+    </div>
+    <div class="bg"></div>
+    <!-- polyfill -->
+    <script src="./components/modules/requestAnimationFrame.js"></script>
     <!-- Dependencies -->
     <script src="./components/chat/chat.tmpl.js"></script>
     <script src="./components/form/form.tmpl.js"></script>
+    <script src="./components/modules/chatService.js"></script>
     <script src="./components/http.js"></script>
     <script src="./components/chat/chat.js"></script>
     <script src="./components/form/form.js"></script>
