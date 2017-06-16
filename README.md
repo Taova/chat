@@ -5,7 +5,7 @@
 
 Курс JavaScript/DOM/интерфейсы
 
-Installation
+### Installation
 ======
 
 install :
@@ -13,7 +13,7 @@ install :
 $ npm install 
 ```
 
-build assets (js) :
+build assets (js, css) :
 ```bash
 $ npm run build
 ```
