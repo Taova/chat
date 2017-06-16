@@ -19,20 +19,13 @@
     </div>
     <div class="bg"></div>
 
-    <script src="./components/modules/utils.js"></script>
     <!-- Dependencies -->
-    <script src="./components/chat/chat.tmpl.js"></script>
-    <script src="./components/form/form.tmpl.js"></script>
-    <script src="./components/modules/chatService.js"></script>
-    <script src="./components/http.js"></script>
-    <script src="./components/chat/chat.js"></script>
-    <script src="./components/form/form.js"></script>
-    <script src="./components/app/app.js"></script>
+    <script src="bundle.js"></script>
 
     <!-- Application start -->
     <script>
         'use strict';
-        new window.App({
+        window.__app = new window.App({
             el: document.querySelector('.app')
         });
     </script>
