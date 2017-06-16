@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Курсовой проект</title>
+    <title>Чатик</title>
     <link href="https://fonts.googleapis.com/css?family=PT+Serif:400,400i,700&amp;subset=cyrillic" rel="stylesheet">
     <link rel="stylesheet" href="./components/app/app.css">
     <link rel="stylesheet" href="./components/chat/chat.css">
@@ -14,15 +14,12 @@
 </head>
 <body>
     <div class="app">
-        <div class="chat">
-            <h1 class="chat__header">Добро пожаловать</h1>
-            <div class="chat__content js-chat"></div>
-        </div>
+        <div class="chat js-chat"></div>
         <div class="form js-form"></div>
     </div>
     <div class="bg"></div>
-    <!-- polyfill -->
-    <script src="./components/modules/requestAnimationFrame.js"></script>
+
+    <script src="./components/modules/utils.js"></script>
     <!-- Dependencies -->
     <script src="./components/chat/chat.tmpl.js"></script>
     <script src="./components/form/form.tmpl.js"></script>

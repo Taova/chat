@@ -14,6 +14,9 @@
     font-size: 1.2rem;
     letter-spacing: 2px;
 }
+.chat__header span{
+    text-transform: none;
+}
 .chat__content{
     color: white;
     height: calc(100% - 62px);
@@ -37,22 +40,43 @@
 .chat__item{
     position: relative;
     display: inline-block;
-    float: left;
     clear: both;
     padding: 10px;
-    margin-left: 60px;
+    margin-left: 5px;
     margin-bottom: 20px;
     font: .9rem/1.1 'PT Serif', serif;
     border-radius: 10px;
     background: rgba(25,147,147,.2);
 }
+.chat__item.left-img{
+    float: left;
+    margin-left: 60px;
+}
+.chat__item.right-img{
+    margin-right: 60px;
+    float: right;
+}
+
+.right-img .chat__item__avatar{
+    left: auto;
+    right: -60px;
+}
+
 .chat__item::after{
     position: absolute;
     content: '';
-    left: -10px;
     top:8px;
     border-bottom: 10px solid rgba(25,147,147,.2);
+}
+
+.left-img.chat__item::after{
+    left: -10px;
     border-left: 10px solid transparent;
+}
+
+.right-img.chat__item::after{
+    right: -10px;
+    border-right: 10px solid transparent;
 }
 
 .chat__item__avatar{

@@ -1,14 +1,13 @@
-ul.chat__list
-    if !messages.length
-        h3.cfont Нет сообщений
-
-    each message in messages
-        li.chat__item
-            .chat__item__avatar
-                img(src=message.img)
-            .chat__item__header.clearfix
-                span.chat__item__autor=message.username
-                span.chat__item__data=message.data
-
-            .chat__item__message=message.message
-
+h1.chat__header='добро пожаловать ' + (user || '')
+div.chat__content
+    ul.chat__list
+        if !messages.length
+            h3.cfont Нет сообщений
+        each message in messages
+            li.chat__item(class=message.isMine ? 'right-img' : 'left-img')
+                .chat__item__avatar
+                    img(src=message.img)
+                .chat__item__header.clearfix
+                    span.chat__item__autor=message.username
+                    span.chat__item__data=message.data
+                .chat__item__message=message.message

@@ -8,6 +8,7 @@
     const Chat = window.Chat;
     const Form = window.Form;
     const ChatService = window.ChatService;
+    const Storage = window.Storage;
     const chatService = new ChatService({
         baseUrl : 'https://chat-1c82d.firebaseio.com/messages.json'
     });
@@ -37,10 +38,10 @@
                 chatService
             });
 
+
         }
 
        _initMediate() {
-
            document.addEventListener('visibilitychange', () => {
               if (document.visibilityState === 'hidden') {
                   this.chat.stopPolling();
@@ -50,48 +51,38 @@
               }
            });
 
-           // document.addEventListener("DOMContentLoaded", this.chat.startPolling);
+           document.addEventListener('DOMContentLoaded', () =>{
+               if (window.localStorage.getItem('name')) {
+                   this.chat.setUserName(window.localStorage.getItem('name'));
+                   this.form.setNameValue(window.localStorage.getItem('name'));
+               }
 
-
-            // this.chatService.getMessage( (newMessage) => {
-            //     let msg =  Object.values(newMessage);
-            //     this.chat.setMessages(msg);
-            //     this.chat.render();
-            //     this.form.reset();
-            // });
+           });
 
 
 
             this.form.onSubmit = (message) => {
+
+                if (message.username) {
+                    this.chat.setUserName(message.username);
+                }
+
                 let data = {
                     message: message.message,
-                    username: message.username
+                    username: this.chat.getUsername()
                 };
+
 
                 chatService.sendMessage(data, () => {
                     console.log('send new Message');
                 });
 
-                //получить сообщения ?
                this.chat.addMessages();
                this.chat.render();
                this.form.reset();
-
-           //     this.chatService.sendMessage(senData, () => {
-           //          this.chat.render();
-           //          this.form.reset();
-           //          return function (msg) {
-           //              console.log(msg);
-           //          }
-           //      });
-           //     this.chatService.getMessage( (newMessage) => {
-           //         let msg =  Object.values(newMessage);
-           //     this.chat.setMessages(msg);
-           //     this.chat.render();
-           //     this.form.reset();
-           // });
-
             };
+
+
         }
     }
     window.App = App;
