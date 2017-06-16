@@ -28,12 +28,14 @@ body{
     left: 50%;
     -webkit-transform: translate(-50%,-50%);
     transform: translate(-50%,-50%);
-    width: 600px;
+    width: 80%;
+    max-width: 650px;
+    min-width: 270px;
     height: 80vh;
     max-height: 800px;
     z-index: 2;
     overflow: hidden;
-    box-shadow: -11px -2px 36px 0px rgba(251, 250, 250, 0.15);
+    box-shadow: -11px -2px 36px 0 rgba(251, 250, 250, 0.15);
     background: rgba(17, 6, 24, 0.61);
     border-radius: 20px;
 }
@@ -75,4 +77,12 @@ body{
 .cfont {
     font-style: italic !important;
     font-family: 'PT Serif', serif !important;
+}
+
+/** media**/
+@media all and (max-width:470px) {
+    .app{
+        height: 100vh;
+
+    }
 }

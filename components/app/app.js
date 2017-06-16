@@ -41,14 +41,14 @@ class App {
     }
 
    _initMediate() {
-       document.addEventListener('visibilitychange', () => {
-          if (document.visibilityState === 'hidden') {
-              this.chat.stopPolling();
-          } else {
-              this.chat.stopPolling();
-              this.chat.startPolling();
-          }
-       });
+       // document.addEventListener('visibilitychange', () => {
+       //    if (document.visibilityState === 'hidden') {
+       //        this.chat.stopPolling();
+       //    } else {
+       //        this.chat.stopPolling();
+       //        this.chat.startPolling();
+       //    }
+       // });
 
        document.addEventListener('DOMContentLoaded', () =>{
            if (window.localStorage.getItem('name')) {

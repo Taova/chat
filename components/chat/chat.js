@@ -22,16 +22,16 @@ class Chat {
     }
 
     _init() {
-        this.startPolling();
+        // this.startPolling();
         this.addMessages();
     }
 
-    startPolling() {
-        this._pollingId = setInterval(() => {
-            this.addMessages();
-
-        }, 8000);
-    }
+    // startPolling() {
+    //     this._pollingId = setInterval(() => {
+    //         this.addMessages();
+    //
+    //     }, 8000);
+    // }
 
     stopPolling() {
         clearInterval(this._pollingId);

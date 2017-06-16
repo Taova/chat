@@ -380,18 +380,17 @@ var Chat = function () {
     _createClass(Chat, [{
         key: '_init',
         value: function _init() {
-            this.startPolling();
+            // this.startPolling();
             this.addMessages();
         }
-    }, {
-        key: 'startPolling',
-        value: function startPolling() {
-            var _this = this;
 
-            this._pollingId = setInterval(function () {
-                _this.addMessages();
-            }, 8000);
-        }
+        // startPolling() {
+        //     this._pollingId = setInterval(() => {
+        //         this.addMessages();
+        //
+        //     }, 8000);
+        // }
+
     }, {
         key: 'stopPolling',
         value: function stopPolling() {
@@ -411,12 +410,12 @@ var Chat = function () {
     }, {
         key: 'addMessages',
         value: function addMessages() {
-            var _this2 = this;
+            var _this = this;
 
             this.chatService.getMessage(function (data) {
                 console.log('Получаем сообщение из ', data);
-                _this2.setMessages(data);
-                _this2.render();
+                _this.setMessages(data);
+                _this.render();
             });
         }
 
@@ -453,15 +452,15 @@ var Chat = function () {
     }, {
         key: 'setMessages',
         value: function setMessages(messages) {
-            var _this3 = this;
+            var _this2 = this;
 
             messages = Object.values(messages);
             this.data.messages = messages.map(function (item) {
                 return {
                     message: item.message,
                     username: item.username,
-                    isMine: _this3.getIsMine(item.username, window.localStorage.getItem('name')),
-                    data: _this3.setData(item.data) || null,
+                    isMine: _this2.getIsMine(item.username, window.localStorage.getItem('name')),
+                    data: _this2.setData(item.data) || null,
                     img: item.img || './components/img/noavatar.png'
                 };
             });
@@ -754,14 +753,14 @@ var App = function () {
         value: function _initMediate() {
             var _this = this;
 
-            document.addEventListener('visibilitychange', function () {
-                if (document.visibilityState === 'hidden') {
-                    _this.chat.stopPolling();
-                } else {
-                    _this.chat.stopPolling();
-                    _this.chat.startPolling();
-                }
-            });
+            // document.addEventListener('visibilitychange', () => {
+            //    if (document.visibilityState === 'hidden') {
+            //        this.chat.stopPolling();
+            //    } else {
+            //        this.chat.stopPolling();
+            //        this.chat.startPolling();
+            //    }
+            // });
 
             document.addEventListener('DOMContentLoaded', function () {
                 if (window.localStorage.getItem('name')) {
