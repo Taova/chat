@@ -82,7 +82,6 @@ body{
 /** media**/
 @media all and (max-width:470px) {
     .app{
-        height: 100vh;
-
+        height: 95vh;
     }
 }

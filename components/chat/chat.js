@@ -22,16 +22,30 @@ class Chat {
     }
 
     _init() {
-        // this.startPolling();
+        this.startPolling();
         this.addMessages();
     }
 
-    // startPolling() {
-    //     this._pollingId = setInterval(() => {
-    //         this.addMessages();
-    //
-    //     }, 8000);
-    // }
+    startPolling() {
+        this._pollingId = setInterval(() => {
+            this.addMessages();
+            // сделать проверку на обновление
+            // this.chatService.getMessage(data => {
+            //     console.log('getMessages', data);
+            //
+            //     if (utils.deepEqual(
+            //             this.data.messages,
+            //             data
+            //     )) {
+            //         return;
+            //     }
+            //
+            //     this.setMessages(data);
+            //     this.render();
+            //
+            // });
+        }, 8000);
+    }
 
     stopPolling() {
         clearInterval(this._pollingId);
@@ -39,8 +53,17 @@ class Chat {
 
     render() {
         this.el.innerHTML = tmpl(this.data);
+        this._scrollToBottom();
     }
 
+
+    /**
+     * Scroll chat window to bottom.
+     */
+    _scrollToBottom() {
+        let chatBox = this.el.querySelector('.chat__content');
+        chatBox.scrollTop = chatBox.scrollHeight;
+    }
     /**
      * Add message into chat store. Without render
      * @param {ChatMessage} данные сообщения
@@ -95,6 +118,8 @@ class Chat {
         }
         return false;
     }
+
+
 
     setData(timeMs){
         let ms  = new Date(timeMs);

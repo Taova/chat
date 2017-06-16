@@ -130,4 +130,7 @@
         height: -moz-calc(100% - 76px);
         height: -webkit-calc(100% - 76px);
     }
+    .chat__item__autor{
+        max-width: 40%;
+    }
 }

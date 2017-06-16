@@ -380,17 +380,33 @@ var Chat = function () {
     _createClass(Chat, [{
         key: '_init',
         value: function _init() {
-            // this.startPolling();
+            this.startPolling();
             this.addMessages();
         }
+    }, {
+        key: 'startPolling',
+        value: function startPolling() {
+            var _this = this;
 
-        // startPolling() {
-        //     this._pollingId = setInterval(() => {
-        //         this.addMessages();
-        //
-        //     }, 8000);
-        // }
-
+            this._pollingId = setInterval(function () {
+                _this.addMessages();
+                // сделать проверку на обновление
+                // this.chatService.getMessage(data => {
+                //     console.log('getMessages', data);
+                //
+                //     if (utils.deepEqual(
+                //             this.data.messages,
+                //             data
+                //     )) {
+                //         return;
+                //     }
+                //
+                //     this.setMessages(data);
+                //     this.render();
+                //
+                // });
+            }, 8000);
+        }
     }, {
         key: 'stopPolling',
         value: function stopPolling() {
@@ -400,8 +416,19 @@ var Chat = function () {
         key: 'render',
         value: function render() {
             this.el.innerHTML = (0, _chatTmpl2.default)(this.data);
+            this._scrollToBottom();
         }
 
+        /**
+         * Scroll chat window to bottom.
+         */
+
+    }, {
+        key: '_scrollToBottom',
+        value: function _scrollToBottom() {
+            var chatBox = this.el.querySelector('.chat__content');
+            chatBox.scrollTop = chatBox.scrollHeight;
+        }
         /**
          * Add message into chat store. Without render
          * @param {ChatMessage} данные сообщения
@@ -410,12 +437,12 @@ var Chat = function () {
     }, {
         key: 'addMessages',
         value: function addMessages() {
-            var _this = this;
+            var _this2 = this;
 
             this.chatService.getMessage(function (data) {
                 console.log('Получаем сообщение из ', data);
-                _this.setMessages(data);
-                _this.render();
+                _this2.setMessages(data);
+                _this2.render();
             });
         }
 
@@ -452,15 +479,15 @@ var Chat = function () {
     }, {
         key: 'setMessages',
         value: function setMessages(messages) {
-            var _this2 = this;
+            var _this3 = this;
 
             messages = Object.values(messages);
             this.data.messages = messages.map(function (item) {
                 return {
                     message: item.message,
                     username: item.username,
-                    isMine: _this2.getIsMine(item.username, window.localStorage.getItem('name')),
-                    data: _this2.setData(item.data) || null,
+                    isMine: _this3.getIsMine(item.username, window.localStorage.getItem('name')),
+                    data: _this3.setData(item.data) || null,
                     img: item.img || './components/img/noavatar.png'
                 };
             });
@@ -753,14 +780,14 @@ var App = function () {
         value: function _initMediate() {
             var _this = this;
 
-            // document.addEventListener('visibilitychange', () => {
-            //    if (document.visibilityState === 'hidden') {
-            //        this.chat.stopPolling();
-            //    } else {
-            //        this.chat.stopPolling();
-            //        this.chat.startPolling();
-            //    }
-            // });
+            document.addEventListener('visibilitychange', function () {
+                if (document.visibilityState === 'hidden') {
+                    _this.chat.stopPolling();
+                } else {
+                    _this.chat.stopPolling();
+                    _this.chat.startPolling();
+                }
+            });
 
             document.addEventListener('DOMContentLoaded', function () {
                 if (window.localStorage.getItem('name')) {
