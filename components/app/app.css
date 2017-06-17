@@ -9,14 +9,15 @@ body{
     overflow: hidden;
 }
 .bg{
-    width: 100%;
-    height: 100%;
+    position: absolute;
     top: 0;
     left: 0;
+    bottom: 0;
+    right: 0;
     z-index: 1;
     background: url("../img/bg.jpg") no-repeat 0 0;
     background-size: cover;
-     -webkit-filter:blur(50px);
+     -webkit-filter:blur(10px);
     filter: blur(10px);
      -webkit-transform:scale(1.2);
     transform: scale(1.2);
@@ -84,4 +85,14 @@ body{
     .app{
         height: 95vh;
     }
+    .bg{
+        -webkit-transform:scale(1);
+        transform: scale(1);
+        -webkit-filter:blur(0);
+        filter: blur(0);
+    }
+    body{
+        background: none;
+    }
+
 }

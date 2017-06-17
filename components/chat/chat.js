@@ -28,22 +28,19 @@ class Chat {
 
     startPolling() {
         this._pollingId = setInterval(() => {
-            this.addMessages();
-            // сделать проверку на обновление
-            // this.chatService.getMessage(data => {
-            //     console.log('getMessages', data);
-            //
-            //     if (utils.deepEqual(
-            //             this.data.messages,
-            //             data
-            //     )) {
-            //         return;
-            //     }
-            //
-            //     this.setMessages(data);
-            //     this.render();
-            //
-            // });
+            this.chatService.getMessage(data => {
+
+                if (utils.deepEqual(
+                        this.data.messages,
+                        data.map(this._prepareMessage.bind(this))
+                )) {
+                    return;
+                }
+
+                this.setMessages(data);
+                this.render();
+
+            });
         }, 8000);
     }
 
@@ -119,7 +116,15 @@ class Chat {
         return false;
     }
 
-
+    _prepareMessage({message, username, data, img}) {
+        return {
+            message,
+            username,
+            isMine: username == window.localStorage.getItem('name'),
+            data: this.setData(data),
+            img : './components/img/noavatar.png'
+        };
+    }
 
     setData(timeMs){
         let ms  = new Date(timeMs);

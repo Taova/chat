@@ -389,22 +389,15 @@ var Chat = function () {
             var _this = this;
 
             this._pollingId = setInterval(function () {
-                _this.addMessages();
-                // сделать проверку на обновление
-                // this.chatService.getMessage(data => {
-                //     console.log('getMessages', data);
-                //
-                //     if (utils.deepEqual(
-                //             this.data.messages,
-                //             data
-                //     )) {
-                //         return;
-                //     }
-                //
-                //     this.setMessages(data);
-                //     this.render();
-                //
-                // });
+                _this.chatService.getMessage(function (data) {
+
+                    if (_utils.utils.deepEqual(_this.data.messages, data.map(_this._prepareMessage.bind(_this)))) {
+                        return;
+                    }
+
+                    _this.setMessages(data);
+                    _this.render();
+                });
             }, 8000);
         }
     }, {
@@ -499,6 +492,22 @@ var Chat = function () {
                 return true;
             }
             return false;
+        }
+    }, {
+        key: '_prepareMessage',
+        value: function _prepareMessage(_ref2) {
+            var message = _ref2.message,
+                username = _ref2.username,
+                data = _ref2.data,
+                img = _ref2.img;
+
+            return {
+                message: message,
+                username: username,
+                isMine: username == window.localStorage.getItem('name'),
+                data: this.setData(data),
+                img: './components/img/noavatar.png'
+            };
         }
     }, {
         key: 'setData',
